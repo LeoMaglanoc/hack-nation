@@ -1,7 +1,7 @@
-# Agentic Commerce — Requirements (Option B: Skiing Outfit)
+# Easy Buy — Requirements (Option B: Skiing Outfit)
 
 ## 1) One‑sentence hook
-We built an agentic commerce system that turns a high‑level skiing outfit intent into a multi‑retailer cart and a simulated checkout, revealing how AI can coordinate real‑world purchasing across stores.
+We built Easy Buy, a system that turns a high‑level skiing outfit intent into a multi‑retailer cart and a simulated checkout, revealing how AI can coordinate real‑world purchasing across stores.
 
 ## 2) System summary (actors, signals, feedback)
 **Actors**

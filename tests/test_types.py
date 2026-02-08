@@ -1,4 +1,4 @@
-"""Unit tests for agentic commerce Pydantic models."""
+"""Unit tests for Easy Buy Pydantic models."""
 
 import pytest
 from pydantic import ValidationError

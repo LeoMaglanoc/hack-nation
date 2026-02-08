@@ -2,4 +2,4 @@
 
 import pytest
 
-pytest.skip("Legacy Gemini tests are obsolete for agentic commerce.", allow_module_level=True)
+pytest.skip("Legacy Gemini tests are obsolete for Easy Buy.", allow_module_level=True)

@@ -1,4 +1,4 @@
-# Failure Modes — Agentic Commerce
+# Failure Modes — Easy Buy
 
 ## A) Missing Gemini key
 

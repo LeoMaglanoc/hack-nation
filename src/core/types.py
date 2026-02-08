@@ -1,4 +1,4 @@
-"""Pydantic models for agentic commerce."""
+"""Pydantic models for Easy Buy."""
 
 from typing import Literal
 

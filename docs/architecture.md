@@ -1,4 +1,4 @@
-# Architecture — Agentic Commerce (Option B: Skiing Outfit)
+# Architecture — Easy Buy (Option B: Skiing Outfit)
 
 ## System diagram
 
@@ -39,7 +39,7 @@ Browser (Next.js :3000)
 
 | Component | File | Responsibility |
 |-----------|------|----------------|
-| Page | `frontend/app/page.tsx` | Renders the agentic commerce UI |
+| Page | `frontend/app/page.tsx` | Renders the Easy Buy UI |
 | Chat + Spec | `frontend/app/components/Chat.tsx` | Capture intent + show structured spec |
 | Cart view | `frontend/app/components/Cart.tsx` | Combined cart, totals, per-item delivery |
 | Ranking explanation | `frontend/app/components/RankingExplain.tsx` | Why #1 is ranked highest |

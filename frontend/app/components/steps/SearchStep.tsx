@@ -444,34 +444,10 @@ export default function SearchStep({
                                 </div>
                                 <div>
                                   <p className="text-[10px] uppercase tracking-[0.14em] text-[var(--text-200)]">
-                                    Signal Assessment
-                                  </p>
-                                  <ul className="list-disc space-y-1 pl-4">
-                                    {explanation.signals.map((signal) => (
-                                      <li key={signal.label}>
-                                        {signal.label}: {influenceLabel(signal.score)} influence
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                                <div>
-                                  <p className="text-[10px] uppercase tracking-[0.14em] text-[var(--text-200)]">
                                     Comparison to Alternatives
                                   </p>
                                   <p>{explanation.comparison}</p>
                                 </div>
-                                {explanation.deltas.length > 0 && (
-                                  <div>
-                                    <p className="text-[10px] uppercase tracking-[0.14em] text-[var(--text-200)]">
-                                      Signal deltas
-                                    </p>
-                                    <ul className="list-disc space-y-1 pl-4">
-                                      {explanation.deltas.map((line) => (
-                                        <li key={line}>{line}</li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
                                 <div>
                                   <p className="text-[10px] uppercase tracking-[0.14em] text-[var(--text-200)]">
                                     Final Justification

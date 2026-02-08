@@ -1,4 +1,4 @@
-"""Integration tests for agentic commerce endpoints."""
+"""Integration tests for Easy Buy endpoints."""
 
 from unittest.mock import patch
 

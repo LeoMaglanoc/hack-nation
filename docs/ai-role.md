@@ -1,4 +1,4 @@
-# AI Role — Agentic Commerce
+# AI Role — Easy Buy
 
 ## Current
 

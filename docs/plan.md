@@ -1,8 +1,8 @@
-# Implementation Plan — Agentic Commerce (Option B)
+# Implementation Plan — Easy Buy (Option B)
 
 ## What we are building
 
-An agentic commerce system that converts a high-level skiing outfit intent into a structured spec, multi-retailer discovery, deterministic ranking, a combined cart, and a simulated checkout.
+An Easy Buy system that converts a high-level skiing outfit intent into a structured spec, multi-retailer discovery, deterministic ranking, a combined cart, and a simulated checkout.
 
 ## What's real vs faked
 

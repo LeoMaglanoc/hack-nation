@@ -1,4 +1,4 @@
-# Requirements — Agentic Commerce (Option B: Skiing Outfit)
+# Requirements — Easy Buy (Option B: Skiing Outfit)
 
 See the full scope in [docs/agentic-commerce-requirements.md](docs/agentic-commerce-requirements.md).
 
