@@ -10,7 +10,7 @@ Browser (Next.js :3000)
   → POST http://localhost:8000/api/cart         { ranked_products }
   → POST http://localhost:8000/api/checkout     { cart, address, payment }
   → FastAPI backend (:8000)
-    → AI Orchestrator (intent → spec, Gemini)
+    → AI Orchestrator (intent → spec, OpenAI)
     → Retailer adapters (≥3, mocked or real)
     → Ranking engine (deterministic scoring)
     → Cart aggregator

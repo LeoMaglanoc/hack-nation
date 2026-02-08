@@ -1,8 +1,8 @@
 # Failure Modes — Agentic Commerce
 
-## A) Missing Gemini key
+## A) Missing OpenAI key
 
-- **Symptom**: `GEMINI_API_KEY` missing or invalid.
+- **Symptom**: `OPENAI_API_KEY` missing or invalid.
 - **Handling**: Backend returns HTTP 503 with a clear message.
 - **Test**: `test_brief_returns_503_when_no_api_key`
 

@@ -256,15 +256,49 @@ export default function Chat() {
                     key={item.product.id}
                     className="rounded-lg border border-slate-800 bg-slate-950 p-3"
                   >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-semibold">{item.product.name}</p>
-                        <p className="text-xs text-slate-400">
-                          {item.product.retailer} · ${item.product.price} · {item.product.delivery_days}
-                          d
-                        </p>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        {item.product.image_url ? (
+                          item.product.url ? (
+                            <a href={item.product.url} target="_blank" rel="noreferrer">
+                              <img
+                                src={item.product.image_url}
+                                alt={item.product.name}
+                                className="h-36 w-36 rounded-2xl object-cover"
+                              />
+                            </a>
+                          ) : (
+                            <img
+                              src={item.product.image_url}
+                              alt={item.product.name}
+                              className="h-36 w-36 rounded-2xl object-cover"
+                            />
+                          )
+                        ) : (
+                          <div className="h-36 w-36 rounded-2xl bg-slate-800" />
+                        )}
+                        <div>
+                          {item.product.url ? (
+                            <a
+                              href={item.product.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-sm font-semibold text-blue-400 hover:underline"
+                            >
+                              {item.product.name}
+                            </a>
+                          ) : (
+                            <p className="text-sm font-semibold">{item.product.name}</p>
+                          )}
+                          <p className="text-xs text-slate-400">
+                            {item.product.retailer} · ${item.product.price} · {item.product.delivery_days}
+                            d · {item.product.rating ?? 0}★ ({item.product.rating_count ?? 0})
+                          </p>
+                        </div>
                       </div>
-                      <span className="text-xs text-slate-300">Score: {item.score}</span>
+                      <span className="text-xs text-slate-300">
+                        Score: {item.score.toFixed(2)}
+                      </span>
                     </div>
                     <ul className="mt-2 list-disc pl-4 text-xs text-slate-400">
                       {item.reasons.map((reason, index) => (
@@ -287,14 +321,46 @@ export default function Chat() {
                   key={item.product.id}
                   className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-slate-800 bg-slate-950 p-3"
                 >
-                  <div>
-                    <p className="text-sm font-semibold">{item.product.name}</p>
-                    <p className="text-xs text-slate-400">
-                      {item.product.retailer} · ${item.product.price} · {item.product.delivery_days}d
-                    </p>
-                    {item.missing_variant && (
-                      <p className="text-xs text-amber-400">Size unavailable</p>
+                  <div className="flex items-center gap-3">
+                    {item.product.image_url ? (
+                      item.product.url ? (
+                        <a href={item.product.url} target="_blank" rel="noreferrer">
+                          <img
+                            src={item.product.image_url}
+                            alt={item.product.name}
+                            className="h-32 w-32 rounded-2xl object-cover"
+                          />
+                        </a>
+                      ) : (
+                        <img
+                          src={item.product.image_url}
+                          alt={item.product.name}
+                          className="h-32 w-32 rounded-2xl object-cover"
+                        />
+                      )
+                    ) : (
+                      <div className="h-32 w-32 rounded-2xl bg-slate-800" />
                     )}
+                    <div>
+                      {item.product.url ? (
+                        <a
+                          href={item.product.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-sm font-semibold text-blue-400 hover:underline"
+                        >
+                          {item.product.name}
+                        </a>
+                      ) : (
+                        <p className="text-sm font-semibold">{item.product.name}</p>
+                      )}
+                      <p className="text-xs text-slate-400">
+                        {item.product.retailer} · ${item.product.price} · {item.product.delivery_days}d · {item.product.rating ?? 0}★ ({item.product.rating_count ?? 0})
+                      </p>
+                      {item.missing_variant && (
+                        <p className="text-xs text-amber-400">Size unavailable</p>
+                      )}
+                    </div>
                   </div>
                   <button
                     onClick={() => handleReplace(item.product.id, item.product.category)}

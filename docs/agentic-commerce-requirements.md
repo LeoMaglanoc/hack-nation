@@ -43,13 +43,17 @@ User updates constraints or replaces items → AI updates spec → re‑query re
 - Each item must include: price, delivery estimate, variants, retailer identity.
 
 ### 5.3 Ranking engine (non‑LLM)
-- Rank products using transparent scoring logic with weights.
+- Rank products using transparent scoring logic with weights (price + customer rating primary, delivery timing secondary).
 - Explain why the top option is #1.
 
 ### 5.4 Single combined cart view
 - Combine items from multiple retailers.
 - Show total cost and delivery per item.
 - Support item replacement and optimization.
+
+### 5.4.1 Product visibility
+- Show product thumbnails.
+- Product names link to retailer pages.
 
 ### 5.5 Checkout orchestration (safe demo)
 - Simulated or sandbox checkout only.

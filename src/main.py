@@ -23,8 +23,9 @@ from src.core.types import (
     RankResponse,
 )
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-LLM_MODEL = os.environ.get("LLM_MODEL", "")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "")
+SERPAPI_API_KEY = os.environ.get("SERPAPI_API_KEY", "")
 
 app = FastAPI(title="hack-nation-backend")
 
@@ -41,16 +42,18 @@ def health():
     return {"status": "ok"}
 
 
+
+
 @app.post("/api/brief", response_model=BriefResponse)
 def brief(req: BriefRequest):
-    if not GEMINI_API_KEY:
-        raise HTTPException(status_code=503, detail="GEMINI_API_KEY not set.")
+    if not OPENAI_API_KEY:
+        raise HTTPException(status_code=503, detail="OPENAI_API_KEY not set.")
 
     try:
         spec = parse_brief(
             req.intent,
-            api_key=GEMINI_API_KEY,
-            model=LLM_MODEL or None,
+            api_key=OPENAI_API_KEY,
+            model=OPENAI_MODEL or None,
         )
         return {"spec": spec}
     except ValueError as e:
@@ -61,8 +64,19 @@ def brief(req: BriefRequest):
 
 @app.post("/api/discover", response_model=DiscoverResponse)
 def discover(req: DiscoverRequest):
-    products = discover_products(req.spec)
-    return {"products": products}
+    if not SERPAPI_API_KEY:
+        raise HTTPException(status_code=503, detail="SERPAPI_API_KEY not set.")
+
+    try:
+        products = discover_products(
+            req.spec,
+            api_key=SERPAPI_API_KEY,
+        )
+        return {"products": products}
+    except ValueError as e:
+        raise HTTPException(status_code=502, detail=f"AI response invalid: {e}") from e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"AI error: {e}") from e
 
 
 @app.post("/api/rank", response_model=RankResponse)

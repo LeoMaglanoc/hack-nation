@@ -2,7 +2,7 @@
 
 ## Current
 
-The AI orchestrator **converts high-level intent into a structured shopping spec**, using Gemini, including:
+The AI orchestrator **converts high-level intent into a structured shopping spec**, using OpenAI, including:
 
 - required items
 - size and material constraints

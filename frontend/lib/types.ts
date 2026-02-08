@@ -18,7 +18,11 @@ export interface Product {
   category: string;
   price: number;
   delivery_days: number;
+  rating?: number;
+  rating_count?: number;
   retailer: string;
+  url?: string | null;
+  image_url?: string | null;
   variants: ProductVariant[];
   tags: string[];
 }

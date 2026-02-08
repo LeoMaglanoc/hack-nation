@@ -55,6 +55,8 @@ class TestProduct:
             category="jacket",
             price=199.0,
             delivery_days=3,
+            rating=4.6,
+            rating_count=120,
             retailer="AlpineCo",
             variants=[ProductVariant(size="M", color="black")],
             tags=["waterproof"],
@@ -69,8 +71,40 @@ class TestProduct:
                 category="pants",
                 price=120.0,
                 delivery_days=0,
+                rating=4.0,
+                rating_count=15,
                 retailer="SnowMart",
                 variants=[ProductVariant(size="M", color="blue")],
+                tags=[],
+            )
+
+    def test_invalid_rating_rejected(self):
+        with pytest.raises(ValidationError):
+            Product(
+                id="p4",
+                name="Ski Helmet",
+                category="helmet",
+                price=90.0,
+                delivery_days=3,
+                rating=6.0,
+                rating_count=10,
+                retailer="SnowMart",
+                variants=[ProductVariant(size="M", color="black")],
+                tags=[],
+            )
+
+    def test_invalid_rating_count_rejected(self):
+        with pytest.raises(ValidationError):
+            Product(
+                id="p5",
+                name="Ski Boots",
+                category="boots",
+                price=180.0,
+                delivery_days=4,
+                rating=4.2,
+                rating_count=-1,
+                retailer="SnowMart",
+                variants=[ProductVariant(size="M", color="black")],
                 tags=[],
             )
 
@@ -83,6 +117,8 @@ class TestCartItem:
             category="gloves",
             price=35.0,
             delivery_days=2,
+            rating=4.2,
+            rating_count=50,
             retailer="PeakGear",
             variants=[ProductVariant(size="M", color="gray")],
             tags=[],

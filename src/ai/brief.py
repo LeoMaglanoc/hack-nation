@@ -3,11 +3,11 @@
 import json
 import re
 
-from google import genai
+from openai import OpenAI
 
 from src.core.types import ShoppingSpec
 
-DEFAULT_MODEL = "gemini-2.0-flash"
+DEFAULT_MODEL = "gpt-4o-mini"
 
 
 def parse_brief(intent: str, *, api_key: str, model: str | None = None) -> ShoppingSpec:
@@ -19,13 +19,13 @@ def parse_brief(intent: str, *, api_key: str, model: str | None = None) -> Shopp
         "deadline_days 5, size 'M'."
     )
 
-    client = genai.Client(api_key=api_key)
-    response = client.models.generate_content(
+    client = OpenAI(api_key=api_key)
+    response = client.responses.create(
         model=model or DEFAULT_MODEL,
-        contents=[{"role": "user", "parts": [{"text": f"{prompt}\nIntent: {intent}"}]}],
+        input=f"{prompt}\nIntent: {intent}",
     )
 
-    content = response.text or ""
+    content = response.output_text or ""
     data = _extract_json(content)
     return ShoppingSpec(**data)
 

@@ -23,9 +23,11 @@ async def test_health_endpoint():
     assert resp.json() == {"status": "ok"}
 
 
+
+
 @pytest.mark.anyio
 @patch("src.main.parse_brief")
-@patch("src.main.GEMINI_API_KEY", "fake-key")
+@patch("src.main.OPENAI_API_KEY", "fake-key")
 async def test_brief_returns_spec(mock_parse):
     spec = ShoppingSpec(
         intent="Downhill skiing outfit",
@@ -46,14 +48,14 @@ async def test_brief_returns_spec(mock_parse):
 
 
 @pytest.mark.anyio
-@patch("src.main.GEMINI_API_KEY", "")
+@patch("src.main.OPENAI_API_KEY", "")
 async def test_brief_returns_503_when_no_api_key():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
         resp = await client.post("/api/brief", json={"intent": "Need a skiing outfit"})
 
     assert resp.status_code == 503
-    assert "GEMINI_API_KEY" in resp.json()["detail"]
+    assert "OPENAI_API_KEY" in resp.json()["detail"]
 
 
 @pytest.mark.anyio
@@ -90,6 +92,29 @@ async def test_discover_returns_products(mock_discover):
 
     assert resp.status_code == 200
     assert resp.json()["products"][0]["id"] == "p1"
+
+
+@pytest.mark.anyio
+@patch("src.main.SERPAPI_API_KEY", "")
+async def test_discover_returns_503_when_no_api_key():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        resp = await client.post(
+            "/api/discover",
+            json={
+                "spec": {
+                    "intent": "Downhill skiing outfit",
+                    "budget": 400,
+                    "deadline_days": 5,
+                    "size": "M",
+                    "must_haves": ["waterproof"],
+                    "nice_to_haves": [],
+                }
+            },
+        )
+
+    assert resp.status_code == 503
+    assert "SERPAPI_API_KEY" in resp.json()["detail"]
 
 
 @pytest.mark.anyio

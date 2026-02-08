@@ -30,7 +30,11 @@ class Product(BaseModel):
     category: str
     price: float = Field(gt=0)
     delivery_days: int = Field(gt=0)
+    rating: float = Field(ge=0, le=5, default=0)
+    rating_count: int = Field(ge=0, default=0)
     retailer: str
+    url: str | None = None
+    image_url: str | None = None
     variants: list[ProductVariant]
     tags: list[str]
 
