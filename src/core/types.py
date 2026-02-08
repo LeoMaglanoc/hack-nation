@@ -119,3 +119,32 @@ class CheckoutRequest(BaseModel):
 
 class CheckoutResponse(BaseModel):
     plan: CheckoutPlan
+
+
+class CustomerInfo(BaseModel):
+    full_name: str
+    email: str
+    phone: str
+    address: str
+    city: str
+    state: str
+    zip: str
+    country: str
+
+
+class InvoiceItem(BaseModel):
+    name: str
+    retailer: str
+    price: float = Field(gt=0)
+    delivery_date: str
+
+
+class InvoiceRequest(BaseModel):
+    customer: CustomerInfo
+    items: list[InvoiceItem]
+    total: float = Field(gt=0)
+
+
+class InvoiceResponse(BaseModel):
+    message: str
+    email_id: str | None = None

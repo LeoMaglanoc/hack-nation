@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { Cart, CheckoutPlan, Product, RankedProduct, ShoppingSpec } from "@/lib/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -9,6 +10,7 @@ const defaultIntent =
   "Downhill skiing outfit, warm and waterproof, size M, budget $400, delivery within 5 days.";
 
 export default function Chat() {
+  const router = useRouter();
   const [intent, setIntent] = useState(defaultIntent);
   const [spec, setSpec] = useState<ShoppingSpec | null>(null);
   const [ranked, setRanked] = useState<RankedProduct[]>([]);
@@ -159,6 +161,34 @@ export default function Chat() {
     } finally {
       setLoading(false);
     }
+  }
+
+  function handleGoToCheckout() {
+    if (!cart || cart.items.length === 0) {
+      setError("Add items to cart before checkout.");
+      return;
+    }
+
+    const today = new Date();
+    const payload = cart.items.map((item) => {
+      const delivery = new Date(today);
+      delivery.setDate(today.getDate() + item.product.delivery_days);
+      return {
+        id: item.product.id,
+        name: item.product.name,
+        price: item.product.price,
+        retailer: item.product.retailer,
+        deliveryDate: delivery.toISOString().slice(0, 10),
+        image: item.product.image_url ?? "",
+        status: "pending",
+        url: item.product.url ?? "",
+        rating: item.product.rating ?? 0,
+        ratingCount: item.product.rating_count ?? 0,
+      };
+    });
+
+    localStorage.setItem("agentic_cart", JSON.stringify(payload));
+    router.push("/checkout");
   }
 
   return (
@@ -373,6 +403,15 @@ export default function Chat() {
               <div className="flex items-center justify-between text-sm text-slate-200">
                 <span>Total</span>
                 <span>${cart.total_cost.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={handleGoToCheckout}
+                  className="rounded-lg bg-indigo-500 px-4 py-2 text-sm font-semibold text-white"
+                >
+                  Continue to Unified Checkout
+                </button>
               </div>
             </div>
           ) : (
