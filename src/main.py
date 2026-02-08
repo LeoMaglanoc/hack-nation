@@ -43,7 +43,7 @@ LLM_MODEL = os.environ.get("LLM_MODEL", "")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.environ.get("OPENAI_MODEL", "")
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
-RESEND_FROM = os.environ.get("RESEND_FROM", "Easy Buy <easy-buy@lemon.de>")
+RESEND_FROM = os.environ.get("RESEND_FROM", "EasyBuy <easy-buy@lemon.de>")
 RESEND_TO = os.environ.get("RESEND_TO", "")
 
 app = FastAPI(title="hack-nation-backend")

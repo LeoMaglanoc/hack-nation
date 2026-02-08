@@ -13,7 +13,7 @@ def generate_customer_message(
 ) -> str:
     prompt = (
         "Write a short 3-4 line customer email confirming order placement. "
-        "Be friendly and concise, end with a polite greeting."
+        "Be friendly and concise, end with a polite greeting and sign as EasyBuy."
     )
 
     client = OpenAI(api_key=api_key)
@@ -22,4 +22,18 @@ def generate_customer_message(
         input=f"{prompt}\nCustomer name: {customer_name}",
     )
 
-    return response.output_text.strip()
+    text = response.output_text.strip()
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    cleaned: list[str] = []
+    for line in lines:
+        lower = line.lower()
+        if "[your name]" in lower or "[your company]" in lower:
+            continue
+        if "your name" == lower or "your company" == lower:
+            continue
+        if line.strip() == "EasyBuy":
+            continue
+        cleaned.append(line)
+
+    cleaned.append("EasyBuy")
+    return "\n".join(cleaned).strip()

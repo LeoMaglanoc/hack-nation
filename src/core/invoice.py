@@ -11,7 +11,7 @@ def build_invoice_pdf(payload: InvoiceRequest) -> bytes:
     pdf.add_page()
 
     pdf.set_font("Helvetica", "B", 16)
-    pdf.cell(0, 10, "Easy Buy Invoice", ln=True)
+    pdf.cell(0, 10, "EasyBuy Invoice", ln=True)
 
     pdf.set_font("Helvetica", "", 10)
     pdf.cell(0, 6, "", ln=True)
@@ -65,7 +65,7 @@ def _customer_block(payload: InvoiceRequest) -> str:
 
 def _sender_block() -> str:
     return (
-        "Easy Buy\n"
+        "EasyBuy\n"
         "Munich, Germany\n"
-        "easy-buy@lemon.de"
+        "easybuy@lemon.de"
     )

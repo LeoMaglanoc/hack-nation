@@ -20,7 +20,7 @@ def send_invoice_email(
     payload = {
         "from": from_email,
         "to": [recipient],
-        "subject": "Your Easy Buy Invoice",
+        "subject": "Your EasyBuy Invoice",
         "text": message,
         "attachments": [
             {
